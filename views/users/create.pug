@@ -1,5 +1,9 @@
-h1 Create User
-form(action="/user/create", method="POST")
-	label name
-	input(name="name", type="text")
-	button Create
+extends ../layouts/layout.pug
+
+block content
+	div.container.text-center.mt-5
+		h1.h1 Create User
+		form.form-inline(action="/user/create", method="POST")
+			label Name:
+			input.form-control.w-75.mx-5(name="name", type="text")
+			button.btn.btn-outline-success Create

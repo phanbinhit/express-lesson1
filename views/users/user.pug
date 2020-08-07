@@ -1,10 +1,13 @@
-a(href="/user/create") Create
-form(action="/user/search", method="GET")
-	input(type="text", name="q", value=`${query}`, placeholder="Enter")
-	button Search
+extends ../layouts/layout.pug
 
-ul
-	each user in users
-		li
-			span= user.name
-			a(href="/user/" + user.id) View
+block content
+	div.container.text-center.mt-5
+		form.form-inline.my-lg-0.m-0-auto(action="/user/search", method="GET", type="search")
+			input.form-control.ml-sm-5.w-75.mr-2(type="text", name="q", value=`${query}`, placeholder="Enter")
+			button.btn.btn-outline-success.my-2.my-sm-0.mr-2 Search
+			a.btn.btn-outline-primary(href="/user/create") Create
+		ul.list-group.mt-2
+			each user in users
+				li.list-group-item
+					span.mr-2= user.name
+					a(href="/user/" + user.id) View
