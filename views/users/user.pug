@@ -1,3 +1,10 @@
+a(href="/user/create") Create
+form(action="/user/search", method="GET")
+	input(type="text", name="q", value=`${query}`, placeholder="Enter")
+	button Search
+
 ul
 	each user in users
-		li= user.name
+		li
+			span= user.name
+			a(href="/user/" + user.id) View
