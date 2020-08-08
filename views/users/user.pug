@@ -3,11 +3,21 @@ extends ../layouts/layout.pug
 block content
 	div.container.text-center.mt-5
 		form.form-inline.my-lg-0.m-0-auto(action="/user/search", method="GET", type="search")
-			input.form-control.ml-sm-5.w-75.mr-2(type="text", name="q", value=`${query}`, placeholder="Enter")
+			input.form-control.w-75.mr-2(type="text", name="q", value=`${query}`, placeholder="Enter")
 			button.btn.btn-outline-success.my-2.my-sm-0.mr-2 Search
 			a.btn.btn-outline-primary(href="/user/create") Create
-		ul.list-group.mt-2
+	div.container.mt-5
+		table.table.table-striped
+			tr.thead-dark
+				td Name
+				td Phone
+				td Action
 			each user in users
-				li.list-group-item
-					span.mr-2= user.name
-					a(href="/user/" + user.id) View
+				tr
+					td 
+						span= user.name
+					td 
+						span=user.phone
+					td
+						a.btn.btn-outline-primary(href="/user/" + user.id) View
+						

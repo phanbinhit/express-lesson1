@@ -8,6 +8,9 @@ const port = 3000;
 
 app.set('view engine', 'pug');
 app.set('views', './views');
+app.use(express.static("public"));
+app.use(express.static("views"));
+
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 

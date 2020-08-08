@@ -21,14 +21,13 @@ module.exports = {
 	getViewUser: function(req, res) {
 		var id = req.params.id;
 		var user = db.get('users').find({id: id}).value();
-		console.log(user);
 		res.render('users/view', {user: user});
 	},
 
 	postCreate: function(req, res) {
 		req.body.id = shortid.generate();
-		var itemPost = req.body;
-		console.log(itemPost);
+		console.log(res.locals);
+		var itemPost = res.locals.itemPost;
 		db.get('users').push(itemPost).write();
 		res.redirect('/user');
 	}

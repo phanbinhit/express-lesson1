@@ -1,9 +1,16 @@
 extends ../layouts/layout.pug
 
 block content
-	div.container.text-center.mt-5
-		h1.h1 Create User
-		form.form-inline(action="/user/create", method="POST")
-			label Name:
-			input.form-control.w-75.mx-5(name="name", type="text")
-			button.btn.btn-outline-success Create
+	div.container.mt-5
+		h1.h1 Create User	
+		if(errors)
+			each error in errors
+				.alert.alert-dark(role='alert')=error
+		form(action="/user/create", method="POST")
+			.form-group
+				label(for='exampleInputName1') Email address
+				input#exampleInputName1.form-control(placeholder='Enter name', name='name', value=values?values.name:'')
+			.form-group
+				label(for='exampleInputPhone1') Email address
+				input#exampleInputPhone1.form-control(placeholder='Enter phone', name='phone', value=values?values.phone:'')
+			button.btn.btn-outline-primary Create
