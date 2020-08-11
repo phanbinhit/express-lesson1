@@ -4,6 +4,7 @@ var db = require('../db.js')
 module.exports = {
 	index: function(req, res) {
 		res.render('users/user', {users: db.get('users').value(), query: ""});
+		console.log(req.cookies);
 	},
 
 	search: function(req, res) {
