@@ -2,6 +2,7 @@ html
     head
         link(rel="stylesheet",  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
         link(rel="stylesheet". href="/stylesheet/style.css")
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     body
         nav.navbar.navbar-expand-lg.navbar-light.bg-light
             a.navbar-brand.text-danger(href='/') CodersX Tokyo
@@ -13,6 +14,13 @@ html
                         a.nav-link(href='/') Home
                     li.nav-item
                         a.nav-link(href='/user') User
+                    li.nav-item
+                        a.nav-link(href='/product') Product
+                    li.nav-item
+                        a.nav-link(href='/card') Card
+                            span.mx-1.px-1.h6.border.rounded-circle.text-white.bg-dark=numCard
             if(user)
                 p=user.name
         block content
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+        script(src='/layouts/script.js')

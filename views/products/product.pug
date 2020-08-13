@@ -1,0 +1,23 @@
+extends ../layouts/layout.pug
+
+block content
+    .container.my-5
+        each row in products
+            .row.mt-3
+                each product in row
+                    .col-sm-3   
+                            .card(style='width: 18rem;')
+                                img.card-img-top(src=product.image, alt='Product')
+                                .card-body
+                                    h5.card-title=product.title
+                                    h5="$" + product.price
+                                    p.card-text=product.decription
+                                    a.btn.btn-primary(href='/card/add/' + product.id).mt-2 Add to Card
+    .container.text-center.my-2
+        .btn-group(role='group', aria-label='Basic example')
+            a.btn.btn-secondary(type='button', href='/product?page=' + (page - 1)) Previous
+            each num in links
+                a.btn.btn-secondary(type='button', href='/product?page=' + num)=num
+            a.btn.btn-secondary(type='button', href='/product?page=' + (page + 1)) Next
+           
+                

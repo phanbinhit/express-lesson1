@@ -1,0 +1,26 @@
+extends ../layouts/layout.pug
+
+block content
+    div.container.mt-5
+        h1.h1 Cards
+        .row
+            h2.mx-3.text-danger="Total: " + total
+            button.btn.btn-warning.px-5 Buy
+        table#list-card.table.mt-5
+            tr  
+                td Logo
+                td Title
+                td Price
+                td Number
+                td Delete
+            each card in cards
+                tr
+                    td
+                        img.border.rounded-circle(src=card.product.image, alt="Product", style="width: 64px")
+                    td=card.product.title
+                    td=card.product.price
+                    td=card.number
+                    td
+                        form(action='/card/delete/' + card.product.id, method='post')
+                            button.btn
+                                i.fa.fa-trash.btn-del(style="font-size: 32px; cursor: pointer")

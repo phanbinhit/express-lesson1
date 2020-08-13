@@ -9,7 +9,7 @@ module.exports = {
 	postLogin: function(req, res, next) {
 		var errors = [];
 		var email = req.body.email;
-		var passwork = req.body.passwork;
+		var password = req.body.password;
 		if (!email) {
 			errors.push("Invalid email");
 			res.render('auth/login', {errors: errors});
@@ -23,7 +23,7 @@ module.exports = {
 			return;
 		}
 
-		if (md5(passwork) !== user.passwork) {
+		if (md5(password) !== user.password) {
 			errors.push("Wrong passwork");
 			res.render('auth/login', {errors: errors});
 			return;

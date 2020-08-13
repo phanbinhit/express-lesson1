@@ -6,11 +6,14 @@ block content
 		if(errors)
 			each error in errors
 				.alert.alert-dark(role='alert')=error
-		form(action="/user/create", method="POST")
+		form(action="/user/create", method="POST", enctype="multipart/form-data")
 			.form-group
-				label(for='exampleInputName1') Email address
-				input#exampleInputName1.form-control(placeholder='Enter name', name='name', value=values?values.name:'')
+				label(for='name') Email address
+				input#name.form-control(placeholder='Enter name', name='name', value=values?values.name:'')
 			.form-group
-				label(for='exampleInputPhone1') Email address
-				input#exampleInputPhone1.form-control(placeholder='Enter phone', name='phone', value=values?values.phone:'')
+				label(for='phone') Email phone
+				input#phone.form-control(placeholder='Enter phone', name='phone', value=values?values.phone:'')
+			.form-group
+				label(for='file') Upload file
+				input#file.form-control-file(placeholder='Enter phone', name='avatar', type="file", value=values?values.phone:'')
 			button.btn.btn-outline-primary Create

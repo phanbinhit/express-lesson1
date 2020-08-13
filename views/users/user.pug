@@ -9,15 +9,19 @@ block content
 	div.container.mt-5
 		table.table.table-striped
 			tr.thead-dark
+				td Avatar
 				td Name
 				td Phone
 				td Action
 			each user in users
 				tr
+					td
+						img(src="/" + user.path, alt="Avartar", style="width:64px")
 					td 
 						span= user.name
 					td 
 						span=user.phone
 					td
 						a.btn.btn-outline-primary(href="/user/" + user.id) View
+	
 						

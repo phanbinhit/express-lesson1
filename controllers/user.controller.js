@@ -1,5 +1,5 @@
 var shortid = require('shortid');
-var db = require('../db.js')
+var db = require('../db.js');
 
 module.exports = {
 	index: function(req, res) {

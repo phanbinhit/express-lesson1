@@ -1,20 +1,11 @@
 extends ../layouts/layout
 
 block content
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        div
-            img.img-fluid.w-25(src="/images/logo.png")
-        div.collapse.navbar-collapse
-            ul.navbar-nav.m-0-auto
-                li.nav-item.active.mr-2
-                    a.nav-link(href="/") Home
-                li.nav-item.mr-2
-                    a.nav-link(href="/user") User
-                li.nav-item.mr-2
-                    a.nav-link(href="/user/create") Create
     div.container.text-center.mt-5
         h1.h1 View user
         table.table.mt-5
             tr
+                td 
+                    img(src="/" + user.path, alt="Avatar", style="width:64px")
                 td=user.name
                 td=user.phone
