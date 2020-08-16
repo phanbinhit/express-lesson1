@@ -7,6 +7,7 @@ block content
 			each error in errors
 				.alert.alert-dark(role='alert')=error
 		form(action="/auth/login", method="POST")
+			input(type="hidden", name="_csrf", value=csrfToken)
 			.form-group
 				label(for='email') Email address
 				input#email.form-control(placeholder='Enter email', name='email', value=values?values.name:'')

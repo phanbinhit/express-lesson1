@@ -8,11 +8,17 @@ block content
 				.alert.alert-dark(role='alert')=error
 		form(action="/user/create", method="POST", enctype="multipart/form-data")
 			.form-group
-				label(for='name') Email address
+				label(for='name') Email name
 				input#name.form-control(placeholder='Enter name', name='name', value=values?values.name:'')
 			.form-group
 				label(for='phone') Email phone
 				input#phone.form-control(placeholder='Enter phone', name='phone', value=values?values.phone:'')
+			.form-group
+				label(for='email') Email email
+				input#email.form-control(placeholder='Enter email', name='email', value=values?values.email:'')
+			.form-group
+				label(for='password') Email password
+				input#password.form-control(placeholder='Enter password', name='password', type="password", value=values?values.password:'')
 			.form-group
 				label(for='file') Upload file
 				input#file.form-control-file(placeholder='Enter phone', name='avatar', type="file", value=values?values.phone:'')

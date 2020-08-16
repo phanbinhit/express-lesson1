@@ -1,0 +1,25 @@
+extends ../layouts/layout.pug
+
+block content
+    div.container.mt-5
+        h1.h1 carts
+        .row
+            h2.total.mx-3.text-danger 
+            button.btn.btn-warning.px-5 Buy
+        table#list-cart.table.mt-5
+            tr  
+                td Logo
+                td Title
+                td Price
+                td Number
+                td Delete
+            each cart in carts
+                tr
+                    td
+                        img.border.rounded-circle(src=cart.product.image, alt="Product", style="width: 64px")
+                    td=cart.product.title
+                    td.price=cart.product.price
+                    td.number=cart.number
+                    td
+                        button.btn.delCart(data-id=cart.product.id)
+                                i.fa.fa-trash.btn-del(style="font-size: 32px; cursor: pointer")

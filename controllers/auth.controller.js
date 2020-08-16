@@ -3,7 +3,7 @@ var md5 = require('md5');
 
 module.exports = {
 	authLogin: function(req, res, next) {
-		res.render('auth/login', {errors: []});
+		res.render('auth/login' ,{errors: [], csrfToken: req.csrfToken });
 	},
 
 	postLogin: function(req, res, next) {

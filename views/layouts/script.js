@@ -1,20 +1,34 @@
-// var htmlList = document.getElementById('list-card');
+$(document).ready(function(){
+    $('table').on('click', 'button',function() {
+        $(this).closest('tr').remove();
+        var id = $(this).data("id");
+        getTotal()
+        $.ajax({
+            url: '/cart/delete',
+            type: 'POST',
+            data: {id: id}
+        });
+    });
 
-// htmlList.addEventListener("click", function(event) {
-//     var button = event.target;
-//     if (button.className === "fa fa-trash btn-del") {
-//         var dataId = button.dataset.id;
-//         fetch('/card/delete/' + dataId, {method: 'POST'})
-//             .then(function(res) {
-//                 if(res.ok) {
-//                     console.log("ok");
-//                     return;
-//                 }
-//                 throw new Error('request failed');
-//             })
-//             .catch(function(err) {
-//                 console.log(err);
-//             })
-//     }
-// })
+    getTotal();
 
+    function getTotal() {
+        var prices = [];
+        var numbers = [];
+        var total = 0;
+
+        $('.price').each(function(index, data) {
+            prices.push(parseInt($(this).text()));    
+        });
+
+        $('.number').each(function(index, data) {
+            numbers.push(parseInt($(this).text()));    
+        });
+
+        for (var i = 0; i < prices.length; i++) {
+            total += prices[i] * numbers[i];
+        }
+
+        $('.total').html("Total: " + total);
+    }
+});

@@ -1,31 +1,34 @@
 var shortid = require('shortid');
-var db = require('../db');
+// var db = require('../db');
+const Session = require('../models/session.model');
+const Product = require('../models/product.model');
 
-module.exports = function(req, res, next) {
+module.exports = async function(req, res, next) {
     var sessionId = req.signedCookies.sessionId;
     if (!sessionId) {
         var sessionId = shortid.generate();
         res.cookie('sessionId', sessionId, {signed: true});
-        db.get('sessions').push({sessionId: sessionId}).write();
+        Session.create({sessionId: sessionId}, function (err, docs) {
+            if (err) return handleError(err);
+        })
     }
 
-    var numCard = 0;
-    var cards = [];
     var total = 0;
-    var productIds = db.get('sessions').find( {sessionId : sessionId} ).value().card;
 
-    for (var id in productIds) {
-        numCard += productIds[id]; 
-        var product = db.get('products').find( {id : id} ).value();
-        cards.push({product: product, number: productIds[id]});
+    var sessions = await Session.findOne({"sessionId": sessionId});
+    var carts = await sessions.carts || [];
+    var numberCart = 0;
+
+    for (var i = 0 ; i < carts.length; i++) {
+        var product = await Product.findById(carts[i].id);
+        carts[i] = {product: product, number: carts[i].number};
+        total += product.price * carts[i].number;
+        numberCart += carts[i].number;
     }
 
-    for (var i = 0; i < cards.length; i++) {
-        total += cards[i].product.price;
-    }
-    
+    res.locals.carts = carts;
     res.locals.total = total;
-    res.locals.cards = cards;
-    res.locals.numCard = numCard;
+    res.locals.numberCart = numberCart;
+
     next();
 }
